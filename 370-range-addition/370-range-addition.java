@@ -1,28 +1,10 @@
 class Solution {
-    public int[] getModifiedArray(int length, int[][] updates) {
-        //Create a new array with int length
-        int [] arr = new int[length];
-        int[] diff = new int[length];
-        int[] update = new int[length];
-        
-        int i = 0;
-        
-        while(i < updates.length){
-            diff = diffArr(arr); //construct the difference array
-            update = update(diff, updates[i]); //apply updates to diff first
-            arr = updatedArr(update); //construct the new array based on the updated difference values
-            
-            i++;
-        }
-        
-        return arr;
-    }
+    private int[] diff;
     
     //new function that returns an array of difference values
     //for all neighbors in arr.
     public int[] diffArr(int[] arr){
-        int[] diff = new int[arr.length];
-        diff[0] = arr[0]; //The 1st element has no left neighbor for           comparison
+        diff = new int[arr.length];
         for(int i = 0; i < arr.length - 1; i++){
             diff[i + 1] = arr[i+1] - arr[i]; //the ith element of diff array stores the difference between the ith and the i-1th element of arr.
         }
@@ -32,14 +14,8 @@ class Solution {
     
     //new function that presets the difference values of elements in the 
     //specified range in diff array based on the increment value from the ith update array.
-    public int[] update(int[]diff, int[]updateI){
-        //By definition, the 1st element in ith update array is the left             boundary;
-        //the 2nd element is the right boundary;the 3rd is the increment(+           or -)
-        int leftEnd = updateI[0];
-        int rightEnd = updateI[1];
-        int increment = updateI[2];
-        
-        //To apply the increment starting at index leftEnd, we apply the increment to the element of diff array at index leftEnd.
+    public int[] update(int leftEnd, int rightEnd, int increment){
+    //To apply the increment starting at index leftEnd, we apply the increment to the element of diff array at index leftEnd.
         diff[leftEnd] += increment;
         //if the rightEnd is the end of the array, then all numbers after leftEnd are affected. No need to change the difference back after rightEnd.
         //If rightEnd is not the end of the array, then resotre the difference value in diff array after rightEnd;
@@ -61,5 +37,26 @@ class Solution {
         }
         
         return newArr;
+    }
+    
+    public int[] getModifiedArray(int length, int[][] updates) {
+        //Create a new array with int length
+        int[] arr = new int[length];
+        diff = diffArr(arr);
+        int[] update = new int[length];
+        
+        int i = 0, leftEnd, rightEnd, increment;
+        
+        while(i < updates.length){
+            leftEnd = updates[i][0];
+            rightEnd = updates[i][1];
+            increment = updates[i][2];
+            
+            update = update(leftEnd, rightEnd, increment); //apply updates to the diff array
+            i++;
+        }
+        arr = updatedArr(update);//construct the new array based on the updated difference values;
+            
+        return arr; 
     }
 }
