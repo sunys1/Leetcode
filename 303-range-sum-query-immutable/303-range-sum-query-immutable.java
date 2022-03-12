@@ -4,30 +4,19 @@ class NumArray {
                           //of the first i elements at ith index
     
     public NumArray(int[] nums) {
-        
-        presum = new int[nums.length];
+        presum = new int[nums.length + 1];
+        presum[0] = 0; //To ease storing first i elements sum at each index
         //System.out.println(presum[0]);
-        for(int i = 0; i < presum.length; i++){
-            if(i == 0){
-                presum[i] = presum[i] + nums[i];
-                System.out.println(presum[i]);
-            }else{
-                presum[i] = presum[i-1] + nums[i];
-                System.out.println(presum[i]);
-            }
+        for(int i = 1; i < presum.length; i++){
+            presum[i] = presum[i-1] + nums[i-1];
+            System.out.println(presum[i]);
         }
     }
     
     public int sumRange(int left, int right) {
-        if(left == 0){
-            //If the left end is 0 and known that right > left. 
-            //The sum = the stored value at presum[right]
-            return presum[right];    
-        }else{
-            //Calculate the difference between the first "right" elements sum
-            //and the first "left" elements sum inclusively
-            return (presum[right] - presum[left - 1]);    
-        }
+        //Calculate the difference between the first "right" elements sum
+        //and the first "left" elements sum inclusively
+        return (presum[right + 1] - presum[left]);   
     }
 }
 
