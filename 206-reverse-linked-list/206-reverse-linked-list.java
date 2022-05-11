@@ -18,13 +18,13 @@ class Solution {
         }
         
         while(head != null){
-            //Keep the next node the current head node
+            //Keep the next node of the current head node
             ListNode next = head.next;
             //Make the current head node the first node in the reversed list
             head.next = rev_head;
             rev_head = head;
             
-            //Now the head node is in the reversed list, move the head pointr to the next node
+            //Now the head node is in the reversed list, move the head pointer to the next node
             head = next;
         }
         
