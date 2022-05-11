@@ -8,14 +8,16 @@
  *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
  * }
  */
+
+//Takeaway: use dummy node to simplify the process
 class Solution {
     public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
         ListNode newHead = new ListNode(-101), temp = newHead;
-        //let newHead node be a virtual head node that does not move
+        //let newHead node be a dummy head node that does not move
         //let temp node advance on behalf of the newHead node
         while(list1 != null && list2 != null){
             //before reaching the end of either list1 or list2
-            //compare the values of list1 and list
+            //compare the values of list1 and list2
             //let the temp node connect the smaller node to the merged                   list started with newHead.
             if(list1.val <= list2.val){
                 temp.next = list1;
