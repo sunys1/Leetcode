@@ -10,7 +10,7 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
-        //Check if lists is null
+        //Check lists length
         if(lists.length == 0){
             return null;    
         }
