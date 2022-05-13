@@ -7,16 +7,12 @@ class Solution {
             //if nums[i] == 0 and nums[j] != 0, swap the elements at i, j
             if(nums[i] == 0){
                 if(nums[j] != 0){
-                    swap(nums, i++,j++);
-                }else{
-                    j++;
+                    swap(nums, i++,j);
                 }
             }else{
                 i++;
-                j++;
             }
-            
-            
+            j++;
         }
     }
     
