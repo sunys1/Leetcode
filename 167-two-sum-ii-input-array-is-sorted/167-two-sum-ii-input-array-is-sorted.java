@@ -7,8 +7,9 @@ class Solution {
         for(int i = 0; i < numbers.length; i++){
             //check if the complement of numbers[i] for the target sum exists 
             //in the hashmap
-            if(val.containsKey(target - numbers[i])){
-                res[0] = val.get(target - numbers[i]);
+            int complement = target - numbers[i];
+            if(val.containsKey(complement)){
+                res[0] = val.get(complement);
                 res[1] = i+1;
             }else{
                 //assuming no duplicates
