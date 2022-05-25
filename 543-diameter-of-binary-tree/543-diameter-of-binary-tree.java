@@ -18,33 +18,34 @@ class Solution {
     public int diameterOfBinaryTree(TreeNode root) {
         //the longest path of a tree = max depth left subtree + max depth right subtree
         //find the diameter of each node and return the max
-        traverse(root);
+        maxDepth(root);
         return maxDiameter;
     }
     
-    void traverse(TreeNode root){
-        if(root == null){
-            return;
-        }
+//     void traverse(TreeNode root){
+//         if(root == null){
+//             return;
+//         }
         
-        int leftMax = maxDepth(root.left);
-        int rightMax = maxDepth(root.right);
-        int myDiameter = leftMax + rightMax;
+//         int leftMax = maxDepth(root.left);
+//         int rightMax = maxDepth(root.right);
+//         int myDiameter = leftMax + rightMax;
         
-        maxDiameter = Math.max(maxDiameter, myDiameter);
+//         maxDiameter = Math.max(maxDiameter, myDiameter);
         
-        traverse(root.left);
-        traverse(root.right);
-    }
+//         traverse(root.left);
+//         traverse(root.right);
+//     }
     
     int maxDepth(TreeNode root){
-        //find the max depth of a tree
         if(root == null){
             return 0;
         }
         
         int leftMax = maxDepth(root.left);
         int rightMax = maxDepth(root.right);
+        int myDiameter = leftMax + rightMax;
+        maxDiameter = Math.max(maxDiameter, myDiameter);
         
         return Math.max(leftMax, rightMax) + 1;
     }
