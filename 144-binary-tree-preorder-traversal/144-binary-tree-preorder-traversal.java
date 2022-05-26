@@ -14,15 +14,30 @@
  * }
  */
 class Solution {
-    List<Integer> res = new LinkedList<>();
     public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer>res = new LinkedList<>();
         if(root == null){
             return res;
         }
         
-        res.add(root.val);
-        res = preorderTraversal(root.left);
-        res = preorderTraversal(root.right);
+        // Create an empty stack and push root to it
+        Stack<TreeNode> nodeStack = new Stack<>();
+        nodeStack.push(root);
+        
+        TreeNode myNode;
+        while(!nodeStack.empty()){
+            myNode = nodeStack.peek();
+            res.add(myNode.val);
+            nodeStack.pop();
+            
+            if(myNode.right != null){
+                nodeStack.push(myNode.right);
+            }
+            
+            if(myNode.left != null){
+                nodeStack.push(myNode.left);
+            }
+        }
         
         return res;
     }
