@@ -14,22 +14,32 @@
  * }
  */
 class Solution {
-    public TreeNode invertTree(TreeNode root) {
-        Traverse(root);
-        return root;
-    }
+//     public TreeNode invertTree(TreeNode root) {
+//         Traverse(root);
+//         return root;
+//     }
     
-    public void Traverse(TreeNode root){
-        if(root == null){
-            return;
+//     public void Traverse(TreeNode root){
+//         if(root == null){
+//             return;
+//         }
+        
+//         TreeNode temp;
+//         temp = root.left;
+//         root.left = root.right;
+//         root.right = temp;
+        
+//         invertTree(root.left);
+//         invertTree(root.right);
+//     }
+        public TreeNode invertTree(TreeNode root) {
+            if (root == null) {
+                return null;
+            }
+            TreeNode left = invertTree(root.left);
+            TreeNode right = invertTree(root.right);
+            root.left = right;
+            root.right = left;
+            return root;
         }
-        
-        TreeNode temp;
-        temp = root.left;
-        root.left = root.right;
-        root.right = temp;
-        
-        invertTree(root.left);
-        invertTree(root.right);
-    }
 }
