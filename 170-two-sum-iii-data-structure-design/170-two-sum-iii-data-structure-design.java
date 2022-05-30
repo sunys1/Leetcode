@@ -1,23 +1,18 @@
 class TwoSum {
-    List<Integer> numList;
     HashMap<Integer,Integer> map;
     public TwoSum() {
-        numList = new ArrayList<>();
         map = new HashMap<>();
     }
     
     public void add(int number) {
-        numList.add(number);
         map.put(number, map.getOrDefault(number, 0) + 1);
     }
     
     public boolean find(int value) {
-        for(int e : numList){
+        for(int e : map.keySet()){
             int other = value - e;
-            if(map.containsKey(other)){
-                if(other == e && map.get(other) > 1) return true;
-                if(other != e && map.get(other) > 0) return true;
-            }
+            if(other == e && map.get(other) > 1) return true;
+            if(other != e && map.containsKey(other)) return true;
         }
         return false;
     }
