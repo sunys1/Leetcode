@@ -16,10 +16,10 @@ class Solution {
         //let i advances 1 step and j advance 2 steps every time
         while(j != null && j.next != null){
             i = i.next;
-            j = j.next;
-            if(j != null){
-                j = j.next;
-            }
+            j = j.next.next;
+            // if(j != null){
+            //     j = j.next;
+            // }
         }
         
         //when j points to null, i is at the middle node of an odd length list or at the 
