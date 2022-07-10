@@ -16,13 +16,11 @@ public class Solution {
         
         //pointer i, j
         ListNode i = head, j = head;
-        int p1 = 0;
         
         //let i advances 1 step and j advance 2 steps at a time
         while(j != null && j.next != null){
             i = i.next;
             j = j.next.next;
-            p1++;
             
             if(i == j){
                 //the linked list has cycle
